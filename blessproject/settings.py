@@ -32,15 +32,14 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
+    'userauth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'blessapp',
-    # 'blessauth',
-    
         
     #Custom Apps
     'core',
@@ -157,6 +156,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 
-
+JAZZMIN_SETTINGS = {
+    "site_header": "SHOP WITH BLESS",
+    "site_brand": "Competency & Intergrity",
+    'site_logo': 'assets/imgs/theme/loading.gif',
+    'copyright': 'zichdan.com',
+    
+}
 
 
