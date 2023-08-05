@@ -33,7 +33,6 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'jazzmin',
-    'userauth',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -43,6 +42,8 @@ INSTALLED_APPS = [
         
     #Custom Apps
     'core',
+    'userauth',
+    
     
     
 ]
@@ -141,7 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-
+AUTH_USER_MODEL = 'userauth.User'
 
 
 
