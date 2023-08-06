@@ -1,5 +1,5 @@
 from django.contrib import admin
-from userauth.models import *
+from userauths.models import *
 
 # Register your models here.
 

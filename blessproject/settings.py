@@ -42,7 +42,7 @@ INSTALLED_APPS = [
         
     #Custom Apps
     'core',
-    'userauth',
+    'userauths',
     
     
     
@@ -142,13 +142,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'userauth.User'
-
-
-
-
-
-
+AUTH_USER_MODEL = 'userauths.User'
 
 
 
@@ -164,5 +158,4 @@ JAZZMIN_SETTINGS = {
     'copyright': 'zichdan.com',
     
 }
-
 
