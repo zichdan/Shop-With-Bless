@@ -16,7 +16,7 @@ def register_view(request):
         if form.is_valid():
             new_user = form.save()
             username = form.cleaned_data.get("username")
-            messages.success(request, f"Hey {username}, You account was created successfully.")
+            messages.success(request, f"Hey {username}, Your account was created successfully.")
             new_user = authenticate(username=form.cleaned_data['email'],
                                     password=form.cleaned_data['password1']
             )
