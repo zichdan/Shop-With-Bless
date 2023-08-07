@@ -4,3 +4,4 @@ six
 
 
 django-jazzmin
+django-shortuuidfield
