@@ -92,7 +92,7 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
     # vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, related_name="product")
 
-    title = models.CharField(max_length=100, default="Fresh Pear")
+    title = models.CharField(max_length=100, default="Senator")
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")
     description = models.TextField(null=True, blank=True, default="This is the product")
     # description = RichTextUploadingField(null=True, blank=True, default="This is the product")
@@ -102,7 +102,7 @@ class Product(models.Model):
 
     # specifications = RichTextUploadingField(null=True, blank=True)
     specifications = models.TextField(null=True, blank=True)
-    tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
+    # tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
    
     product_status = models.CharField(choices=STATUS, max_length=10, default="in_review")
    
