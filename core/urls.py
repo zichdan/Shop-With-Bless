@@ -30,7 +30,7 @@ urlpatterns = [
 
     # Category
     path("category/", category_list_view, name="category-list"),
-#     path("category/<cid>/", category_product_list__view, name="category-product-list"),
+    path("category/<cid>/", category_product_list__view, name="category-product-list"),
 
 #     # Vendor
 #     path("vendors/", vendor_list_view, name="vendor-list"),
