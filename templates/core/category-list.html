@@ -96,7 +96,7 @@
                                 {% for c in categories %}
                                 <article class="col-xl-4 col-lg-6 col-md-6 text-center hover-up mb-30 animated">
                                     <div class="post-thumb">
-                                        <a href="{% url 'core:category-product-list' c.cid %}">
+                                        {% comment %} <a href="{% url 'core:category-product-list' c.cid %}"> {% endcomment %}
                                             <img style="height: 300px; width: 300px; object-fit: cover;" class="border-radius-15" src="{{c.image.url}}" alt="" />
                                         </a>
                                         <div class="entry-meta">
@@ -106,7 +106,7 @@
                                     <div class="entry-content-2">
                                         <!-- <h6 class="mb-10 font-sm"><a class="entry-meta text-muted" href="blog-category-grid.html">Side Dish</a></h6> -->
                                         <h4 class="post-title mb-15">
-                                            <a href="{% url 'core:category-product-list' c.cid %}">{{ c.title }}</a>
+                                            {% comment %} <a href="{% url 'core:category-product-list' c.cid %}">{{ c.title }}</a> {% endcomment %}
                                         </h4>
                                         <div class="entry-meta font-xs color-grey mt-10 pb-10">
                                             <div>
@@ -151,7 +151,7 @@
                                 <ul>
                                     {% for c in categories %}
                                     <li>
-                                        <a href="{% url 'core:category-product-list' c.cid %}"> <img src="{{c.image.url}}" alt="" />{{c.title}}</a><span class="count">{{c.category.count}}</span>
+                                        {% comment %} <a href="{% url 'core:category-product-list' c.cid %}"> <img src="{{c.image.url}}" alt="" />{{c.title}}</a><span class="count">{{c.category.count}}</span> {% endcomment %}
                                     </li>
                                     {% endfor %}
                                 </ul>

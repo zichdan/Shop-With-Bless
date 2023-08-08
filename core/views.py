@@ -42,13 +42,13 @@ def product_list_view(request):
     return render(request, 'core/product-list.html', context)
 
 
-# def category_list_view(request):
-#     categories = Category.objects.all()
+def category_list_view(request):
+    categories = Category.objects.all()
 
-#     context = {
-#         "categories":categories
-#     }
-#     return render(request, 'core/category-list.html', context)
+    context = {
+        "categories":categories
+    }
+    return render(request, 'core/category-list.html', context)
 
 
 # def category_product_list__view(request, cid):
