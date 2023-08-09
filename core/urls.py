@@ -34,7 +34,7 @@ urlpatterns = [
 
     # Vendor
     path("vendors/", vendor_list_view, name="vendor-list"),
-    # path("vendor/<vid>/", vendor_detail_view, name="vendor-detail"),
+    path("vendor/<vid>/", vendor_detail_view, name="vendor-detail"),
 
 #     # Tags
 #     path("products/tag/<slug:tag_slug>/", tag_list, name="tags"),

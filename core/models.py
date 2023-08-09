@@ -90,7 +90,7 @@ class Product(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
-    # vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, related_name="product")
+    vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, related_name="product")
 
     title = models.CharField(max_length=100, default="Senator")
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")
