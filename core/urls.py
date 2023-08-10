@@ -26,7 +26,7 @@ urlpatterns = [
     # Homepage
     path("", index, name="index"),
     path("products/", product_list_view, name="product-list"),
-    # path("product/<pid>/", product_detail_view, name="product-detail"),
+    path("product/<pid>/", product_detail_view, name="product-detail"),
 
     # Category
     path("category/", category_list_view, name="category-list"),

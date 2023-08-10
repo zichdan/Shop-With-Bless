@@ -5,7 +5,7 @@ from django.contrib import messages
 
 def default(request):
     categories = Category.objects.all()
-    # vendors = Vendor.objects.all()
+    vendors = Vendor.objects.all()
 
     # min_max_price = Product.objects.aggregate(Min("price"), Max("price"))
 
@@ -20,15 +20,15 @@ def default(request):
 
     
     
-    # try:
-    #     address = Address.objects.get(user=request.user)
-    # except:
-    #     address = None
+    try:
+        address = Address.objects.get(user=request.user)
+    except:
+        address = None
 
     return {
         'categories':categories,
     #     'wishlist':wishlist,
-    #     'address':address,
-    #     'vendors':vendors,
+        'address':address,
+        'vendors':vendors,
     #     'min_max_price':min_max_price,
     }
