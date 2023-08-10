@@ -85,7 +85,7 @@ def vendor_detail_view(request, vid):
 def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
     # # product = get_object_or_404(Product, pid=pid)
-    # products = Product.objects.filter(category=product.category).exclude(pid=pid)
+    products = Product.objects.filter(category=product.category).exclude(pid=pid)
 
     # # Getting all reviews related to a product
     # reviews = ProductReview.objects.filter(product=product).order_by("-date")
@@ -119,7 +119,7 @@ def product_detail_view(request, pid):
         "p_image": p_image,
         # "average_rating": average_rating,
         # "reviews": reviews,
-        # "products": products,
+        "products": products,
     }
 
     return render(request, "core/product-detail.html", context)

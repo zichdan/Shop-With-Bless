@@ -5,3 +5,4 @@ six
 
 django-jazzmin
 django-shortuuidfield
+django-taggit

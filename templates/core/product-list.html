@@ -179,7 +179,7 @@
                             <div class="product-cart-wrap mb-30">
                                 <div class="product-img-action-wrap">
                                     <div class="product-img product-img-zoom">
-                                        {% comment %} <a href="{% url 'core:product-detail' p.pid %}"> {% endcomment %}
+                                        <a href="{% url 'core:product-detail' p.pid %}">
                                             <img class="default-img" src="{{ p.image.url }}" alt="" style="height: 280px; width: 280px; object-fit: cover;"   />
                                             <img class="hover-img" src="{{ p.image.url }}" alt=""  style="height: 280px; width: 280px; object-fit: cover;"  />
 
@@ -188,7 +188,7 @@
                                     <div class="product-action-1">
                                         <a aria-label="Add To Wishlist"  class="action-btn add-to-wishlist" data-product-item="{{p.id}}"><i class="fi-rs-heart"></i></a>
                                         <!-- <a aria-label="Compare" class="action-btn" href="shop-compare.html"><i class="fi-rs-shuffle"></i></a> -->
-                                        {% comment %} <a href="{% url 'core:product-detail' p.pid %}" class="action-btn"><i class="fi-rs-eye"></i></a> {% endcomment %}
+                                        <a href="{% url 'core:product-detail' p.pid %}" class="action-btn"><i class="fi-rs-eye"></i></a>
                                     </div>
                                     <div class="product-badges product-badges-position product-badges-mrg">
                                         <span class="hot">-{{p.get_precentage|floatformat:0}}%</span>
@@ -196,7 +196,7 @@
                                 </div>
                                 <div class="product-content-wrap">
                                     <div class="product-category">
-                                        {% comment %} <a href="{% url 'core:product-detail' p.pid %}">{{ p.category.title }}</a> {% endcomment %}
+                                        <a href="{% url 'core:product-detail' p.pid %}">{{ p.category.title }}</a>
                                     </div>
                                     <h2><a href="shop-product-right.html">{{ p.title }}</a></h2>
                                     <div class="product-rate-cover">
@@ -204,8 +204,13 @@
                                         <span class="font-small ml-5 text-muted"> ({{ p.reviews.all.count }})</span>
 
                                     </div>
+
+
+
+                                    
+                                    {% comment %} REMEMBER TO WRITE AN IF STATEMENT HERE {% endcomment %}
                                     <div>
-                                        {% comment %} <span class="font-small text-muted">By <a href="{% url 'core:vendor-detail' p.vendor.vid %}">{{p.vendor.title}}</a></span> {% endcomment %}
+                                        <span class="font-small text-muted">By <a href="{% url 'core:vendor-detail' p.vendor.vid %}">{{p.vendor.title}}</a></span>
                                     </div>
                                     <div class="product-card-bottom">
                                         <div class="product-price">
