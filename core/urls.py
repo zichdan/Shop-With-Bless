@@ -36,8 +36,8 @@ urlpatterns = [
     path("vendors/", vendor_list_view, name="vendor-list"),
     path("vendor/<vid>/", vendor_detail_view, name="vendor-detail"),
 
-#     # Tags
-#     path("products/tag/<slug:tag_slug>/", tag_list, name="tags"),
+     # Tags
+    path("products/tag/<slug:tag_slug>/", tag_list, name="tags"),
 
 #     # Add Review
 #     path("ajax-add-review/<int:pid>/", ajax_add_review, name="ajax-add-review"),

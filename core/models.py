@@ -2,7 +2,7 @@ from django.db import models
 from shortuuid.django_fields import ShortUUIDField
 from django.utils.html import mark_safe
 from userauths.models import User
-# from taggit.managers import TaggableManager
+from taggit.managers import TaggableManager
 # from ckeditor_uploader.fields import  RichTextUploadingField
 
 
@@ -117,7 +117,7 @@ class Product(models.Model):
     life = models.CharField(max_length=100, default="100 Days", null=True, blank=True)
     mfd = models.DateTimeField(auto_now_add=False, null=True, blank=True)
 
-    # tags = TaggableManager(blank=True)
+    tags = TaggableManager(blank=True)
 
     sku = ShortUUIDField(unique=True, length=4, max_length=10, prefix="sku", alphabet="1234567890")
 

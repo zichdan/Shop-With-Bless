@@ -1,7 +1,7 @@
 
 from django.http import JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
-# from taggit.models import Tag
+from taggit.models import Tag
 from core.models import Product, Category, Vendor, CartOrder, CartOrderProducts, ProductImages, ProductReview, wishlist_model, Address
 # from userauths.models import ContactUs, Profile
 # from core.forms import ProductReviewForm
@@ -32,11 +32,11 @@ def index(request):
 
 def product_list_view(request):
     products = Product.objects.filter(product_status="published").order_by("-id")
-    # tags = Tag.objects.all().order_by("-id")[:6]
+    tags = Tag.objects.all().order_by("-id")[:6]
 
     context = {
         "products":products,
-        # "tags":tags,
+        "tags":tags,
     }
 
     return render(request, 'core/product-list.html', context)
@@ -124,21 +124,21 @@ def product_detail_view(request, pid):
 
     return render(request, "core/product-detail.html", context)
 
-# def tag_list(request, tag_slug=None):
+def tag_list(request, tag_slug=None):
 
-#     products = Product.objects.filter(product_status="published").order_by("-id")
+    products = Product.objects.filter(product_status="published").order_by("-id")
 
-#     tag = None 
-#     if tag_slug:
-#         tag = get_object_or_404(Tag, slug=tag_slug)
-#         products = products.filter(tags__in=[tag])
+    tag = None 
+    if tag_slug:
+        tag = get_object_or_404(Tag, slug=tag_slug)
+        products = products.filter(tags__in=[tag])
 
-#     context = {
-#         "products": products,
-#         "tag": tag
-#     }
+    context = {
+        "products": products,
+        "tag": tag
+    }
 
-#     return render(request, "core/tag.html", context)
+    return render(request, "core/tag.html", context)
 
 
 # def ajax_add_review(request, pid):
