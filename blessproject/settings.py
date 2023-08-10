@@ -42,6 +42,9 @@ INSTALLED_APPS = [
     
     #Third Party Apps
     'taggit',
+    'ckeditor',
+    # 'bootstrap4',
+    
         
     #Custom Apps
     'core',
@@ -150,9 +153,6 @@ AUTH_USER_MODEL = 'userauths.User'
 
 
 
-
-
-
 JAZZMIN_SETTINGS = {
     "site_header": "SHOP WITH BLESS",
     "site_brand": "Competency & Intergrity",
@@ -160,4 +160,28 @@ JAZZMIN_SETTINGS = {
     'copyright': 'zichdan.com',
     
 }
+
+
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        'codeSnippet_theme': 'monokai',
+        'toolbar': 'all',
+        'extraPlugins': ','.join(
+            [
+                'codesnippet',
+                'widget',
+                'dialog'
+            ]
+        ),
+    }
+}
+
+
+
+
+
 

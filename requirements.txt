@@ -6,3 +6,4 @@ six
 django-jazzmin
 django-shortuuidfield
 django-taggit
+django-ckeditor
