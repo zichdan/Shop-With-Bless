@@ -141,32 +141,32 @@ def tag_list(request, tag_slug=None):
     return render(request, "core/tag.html", context)
 
 
-# def ajax_add_review(request, pid):
-#     product = Product.objects.get(pk=pid)
-#     user = request.user 
+def ajax_add_review(request, pid):
+    product = Product.objects.get(pk=pid)
+    user = request.user 
 
-#     review = ProductReview.objects.create(
-#         user=user,
-#         product=product,
-#         review = request.POST['review'],
-#         rating = request.POST['rating'],
-#     )
+    review = ProductReview.objects.create(
+        user=user,
+        product=product,
+        review = request.POST['review'],
+        rating = request.POST['rating'],
+    )
 
-#     context = {
-#         'user': user.username,
-#         'review': request.POST['review'],
-#         'rating': request.POST['rating'],
-#     }
+    context = {
+        'user': user.username,
+        'review': request.POST['review'],
+        'rating': request.POST['rating'],
+    }
 
-#     average_reviews = ProductReview.objects.filter(product=product).aggregate(rating=Avg("rating"))
+    average_reviews = ProductReview.objects.filter(product=product).aggregate(rating=Avg("rating"))
 
-#     return JsonResponse(
-#        {
-#          'bool': True,
-#         'context': context,
-#         'average_reviews': average_reviews
-#        }
-#     )
+    return JsonResponse(
+       {
+         'bool': True,
+        'context': context,
+        'average_reviews': average_reviews
+       }
+    )
 
 
 # def search_view(request):
