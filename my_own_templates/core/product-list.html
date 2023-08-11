@@ -204,6 +204,11 @@
                                         <span class="font-small ml-5 text-muted"> ({{ p.reviews.all.count }})</span>
 
                                     </div>
+
+
+
+                                    
+                                    {% comment %} REMEMBER TO WRITE AN IF STATEMENT HERE {% endcomment %}
                                     <div>
                                         <span class="font-small text-muted">By <a href="{% url 'core:vendor-detail' p.vendor.vid %}">{{p.vendor.title}}</a></span>
                                     </div>

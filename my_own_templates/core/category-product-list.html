@@ -1,135 +1,29 @@
 {% extends 'partials/base.html' %}
 {% load static %}
 {% block content %}
-
-    <head>
-        <style>
-            input[type="range"] {
-            -webkit-appearance: none;
-            margin-right: 15px;
-            height: 7px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 5px;
-            background-image: linear-gradient(#3bb77e, #3bb77e);
-            background-size: 100% 100%;
-            background-repeat: no-repeat;
-            }
-    
-            input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 20px;
-            width: 20px;
-            border-radius: 50%;
-            background: #3bb77e;
-            cursor: ew-resize;
-            box-shadow: 0 0 2px 0 #555;
-            transition: background .3s ease-in-out;
-            }
-    
-            input[type=range]::-webkit-slider-runnable-track  {
-            -webkit-appearance: none;
-            box-shadow: none;
-            border: none;
-            background: transparent;
-            }
-        </style>
-    
-    </head>
-
     <main class="main">
-        <div class="page-header breadcrumb-wrap">
+        <div class="page-header mt-30 mb-50">
             <div class="container">
-                <div class="breadcrumb">
-                    <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
-                    <span></span> Shop <span></span> Fillter
+                <div class="archive-header">
+                    <div class="row align-items-center">
+                        <div class="col-xl-3">
+                            <h1 class="mb-15">{{category.title}}</h1>
+                            <div class="breadcrumb">
+                                <a href="index.html" rel="nofollow"><i class="fi-rs-home mr-5"></i>Home</a>
+                                <span></span> Shop <span></span> {{category.title}}
+                            </div>
+                        </div>
+                        
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="container mb-30 mt-30">
+        <div class="container mb-30">
             <div class="row">
-                <div class="col-lg-12">
-                    <a class="shop-filter-toogle" href="#">
-                        <span class="fi-rs-filter mr-5"></span>
-                        Filters
-                        <i class="fi-rs-angle-small-down angle-down"></i>
-                        <i class="fi-rs-angle-small-up angle-up"></i>
-                    </a>
-                    <div class="shop-product-fillter-header">
-                        <div class="row">
-                            <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
-                                <div class="card">
-                                    <h5 class="mb-30">By Categories</h5>
-                                    <div class="categories-dropdown-wrap font-heading">
-                                        <ul>
-                                            {% for c in categories %}
-                                            <li>
-                                                <input data-filter="category" class="form-check-input filter-checkbox" type="checkbox" name="checkbox" id="exampleCheckbox2" value="{{ c.id }}" />
-                                                &nbsp;&nbsp;
-                                                <a href="{% url 'core:category-product-list' c.cid %}"> <img src="{{c.image.url}}" alt="" />{{ c.title }}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
-                                <div class="card">
-                                    <h5 class="mb-30">By Vendors</h5>
-                                    <div class="d-flex">
-                                        <div class="customeee-checkbox mr-80">
-                                            {% for v in vendors %}
-                                            <input class="form-check-input filter-checkbox" data-filter="vendor" type="checkbox" name="checkbox" id="exampleCheckbox1" value="{{ v.id }}" />
-                                            <label class="form-check-label" for="exampleCheckbox1"><span>{{v.title}}</span></label>
-                                            <br /><br />
-                                            {% endfor %}
-                                        </div>
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-2 mb-sm-2">
-                                <div class="card">
-                                    <h5 class="mb-30">Popular Tags</h5>
-                                    <div class="sidebar-widget widget-tags">
-                                        <ul class="tags-list">
-                                            {% for t in tags %}
-                                            <li class="hover-up">
-                                                <a href="{% url 'core:tags' t.slug %}"><i class="fi-rs-cross mr-10"></i>{{t}}</a>
-                                            </li>
-                                            {% endfor %}
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-3 col-lg-6 col-md-6 mb-lg-0 mb-md-5 mb-sm-5">
-                                <div class="card">
-                                    <h5 class="mb-10">By Price</h5>
-                                    <div class="sidebar-widget price_range range">
-                                        <div class="price-filter mb-20">
-                                            <div class="price-filter-inner">
-                                                <div id="slidder-range" class="mb-20"></div>
-                                                <input type="range" name="ranDge" value="{{ min_max_price.price__min|floatformat:2 }}" class="slider-range" id="range" min="{{ min_max_price.price__min }}" max="{{ min_max_price.price__max }}" oninput="max_price.value=this.value">
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="caption">From: <strong id="slider-range-value1" class="text-brand">${{ min_max_price.price__min|floatformat:2 }}</strong></div>
-                                                    <div class="caption">To: <strong id="slider-range-value2" class="text-brand">${{ min_max_price.price__max|floatformat:2 }}</strong></div>
-                                                </div>
-                                                <input type="number"  name="" value="{{ min_max_price.price__min|floatformat:2 }}" id="max_price" min="{{ min_max_price.price__min }}" max="{{ min_max_price.price__max }}" placeholder="Current Price" onkeyup="range.value=this.value">
-                                            </div>
-                                        </div>
-                                        <div class="custome-checkbox">
-                                            <button class="btn mt-20 w-100" type="button" id="price-filter-btn">Filter</button>
-                                            <!-- <h3>{{ min_max_price }}</h3> -->
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
                 <div class="col-12">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p>We found <strong class="text-brand">{{products.count}}</strong> items for you!</p>
+                            <p>We found <strong class="text-brand">{{products.count}}</strong> item{{products.count|pluralize}} for you!</p>
                         </div>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">
@@ -172,8 +66,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row product-grid" id="filtered-product">
-
+                    <div class="row product-grid">
                         {% for p in products %}
                         <div class="col-lg-1-5 col-md-4 col-12 col-sm-6">
                             <div class="product-cart-wrap mb-30">
@@ -229,10 +122,9 @@
                             </div>
                         </div>
                         {% endfor %}
-                        
                     </div>
                     <!--product grid-->
-                    <!-- <div class="pagination-area mt-20 mb-20">
+                    <div class="pagination-area mt-20 mb-20">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination justify-content-start">
                                 <li class="page-item">
@@ -248,7 +140,7 @@
                                 </li>
                             </ul>
                         </nav>
-                    </div> -->
+                    </div>
                     <section class="section-padding pb-5">
                         <div class="section-title">
                             <h3 class="">Deals Of The Day</h3>
@@ -263,7 +155,7 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
                                             <a href="shop-product-right.html">
-                                                <img src="{% static 'assets/imgs/banner/banner-5.png' %}" alt="" />
+                                                <img src="assets/imgs/banner/banner-5.png" alt="" />
                                             </a>
                                         </div>
                                     </div>
@@ -300,7 +192,7 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
                                             <a href="shop-product-right.html">
-                                                <img src="{% static 'assets/imgs/banner/banner-6.png' %}" alt="" />
+                                                <img src="assets/imgs/banner/banner-6.png" alt="" />
                                             </a>
                                         </div>
                                     </div>
@@ -337,7 +229,7 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
                                             <a href="shop-product-right.html">
-                                                <img src="{% static 'assets/imgs/banner/banner-7.png' %}" alt="" />
+                                                <img src="assets/imgs/banner/banner-7.png" alt="" />
                                             </a>
                                         </div>
                                     </div>
@@ -374,7 +266,7 @@
                                     <div class="product-img-action-wrap">
                                         <div class="product-img">
                                             <a href="shop-product-right.html">
-                                                <img src="{% static 'assets/imgs/banner/banner-8.png' %}" alt="" />
+                                                <img src="assets/imgs/banner/banner-8.png" alt="" />
                                             </a>
                                         </div>
                                     </div>
@@ -413,6 +305,5 @@
             </div>
         </div>
     </main>
-    
+   
 {% endblock content %}
-    
