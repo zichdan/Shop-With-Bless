@@ -51,8 +51,8 @@ urlpatterns = [
     # Add to cart URL
     path("add-to-cart/", add_to_cart, name="add-to-cart"),
 
-#     # Cart Page URL
-#     path("cart/", cart_view, name="cart"),
+    # Cart Page URL
+    path("cart/", cart_view, name="cart"),
 
 #     # Delete ITem from Cart
 #     path("delete-from-cart/", delete_item_from_cart, name="delete-from-cart"),

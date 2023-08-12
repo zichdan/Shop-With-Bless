@@ -430,8 +430,8 @@
                                         <a>Blog</a>
 
                                     </li>
-                                    <li>
-                                        <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
+                                    {% comment %} <li>
+                                        <a href="#">Pages <i class="fi-rs-angle-down"></i></a> {% endcomment %}
                                         {% comment %} <ul class="sub-menu">
                                             <li><a href="{% url 'core:about_us' %}">About Us</a></li>
                                             <li><a href="{% url 'core:contact' %}">Contact</a></li>
@@ -472,7 +472,7 @@
                                 </a>
                             </div>
                             <div class="header-action-icon-2">
-                                {% comment %} <a class="mini-cart-icon" href="{% url 'core:cart' %}"> {% endcomment %}
+                                <a class="mini-cart-icon" href="{% url 'core:cart' %}">
                                     <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
                                     <span class="pro-count white cart-items-count">{{ request.session.cart_data_obj|length }}</span>
                                 </a>
@@ -480,7 +480,7 @@
 
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-button">
-                                            {% comment %} <a href="{% url 'core:cart' %}">View cart</a> {% endcomment %}
+                                            <a href="{% url 'core:cart' %}">View cart</a>
                                             {% comment %} <a href="{% url 'core:checkout' %}">Checkout</a> {% endcomment %}
                                         </div>
                                     </div>
