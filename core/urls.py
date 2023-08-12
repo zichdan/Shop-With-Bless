@@ -60,8 +60,8 @@ urlpatterns = [
     # Update  Cart
     path("update-cart/", update_cart, name="update-cart"),
 
-#       # Checkout  URL
-#     path("checkout/", checkout_view, name="checkout"),
+      # Checkout  URL
+    path("checkout/", checkout_view, name="checkout"),
 
 #     # Paypal URL
 #     path('paypal/', include('paypal.standard.ipn.urls')),

@@ -283,63 +283,63 @@ def update_cart(request):
 
 
 # @login_required
-# def checkout_view(request):
-#     cart_total_amount = 0
-#     total_amount = 0
+def checkout_view(request):
+    cart_total_amount = 0
+    total_amount = 0
 
-#     # Checking if cart_data_obj session exists
-#     if 'cart_data_obj' in request.session:
+    # Checking if cart_data_obj session exists
+    if 'cart_data_obj' in request.session:
 
-#         # Getting total amount for Paypal Amount
-#         for p_id, item in request.session['cart_data_obj'].items():
-#             total_amount += int(item['qty']) * float(item['price'])
+        # Getting total amount for Paypal Amount
+        for p_id, item in request.session['cart_data_obj'].items():
+            total_amount += int(item['qty']) * float(item['price'])
 
-#         # Create ORder Object
-#         order = CartOrder.objects.create(
-#             user=request.user,
-#             price=total_amount
-#         )
+        # Create ORder Object
+        order = CartOrder.objects.create(
+            user=request.user,
+            price=total_amount
+        )
 
-#         # Getting total amount for The Cart
-#         for p_id, item in request.session['cart_data_obj'].items():
-#             cart_total_amount += int(item['qty']) * float(item['price'])
+        # Getting total amount for The Cart
+        # for p_id, item in request.session['cart_data_obj'].items():
+        #     cart_total_amount += int(item['qty']) * float(item['price'])
 
-#             cart_order_products = CartOrderProducts.objects.create(
-#                 order=order,
-#                 invoice_no="INVOICE_NO-" + str(order.id), # INVOICE_NO-5,
-#                 item=item['title'],
-#                 image=item['image'],
-#                 qty=item['qty'],
-#                 price=item['price'],
-#                 total=float(item['qty']) * float(item['price'])
-#             )
+        #     cart_order_products = CartOrderProducts.objects.create(
+        #         order=order,
+        #         invoice_no="INVOICE_NO-" + str(order.id), # INVOICE_NO-5,
+        #         item=item['title'],
+        #         image=item['image'],
+        #         qty=item['qty'],
+        #         price=item['price'],
+        #         total=float(item['qty']) * float(item['price'])
+        #     )
 
-#         host = request.get_host()
-#         paypal_dict = {
-#             'business': settings.PAYPAL_RECEIVER_EMAIL,
-#             'amount': cart_total_amount,
-#             'item_name': "Order-Item-No-" + str(order.id),
-#             'invoice': "INVOICE_NO-" + str(order.id),
-#             'currency_code': "USD",
-#             'notify_url': 'http://{}{}'.format(host, reverse("core:paypal-ipn")),
-#             'return_url': 'http://{}{}'.format(host, reverse("core:payment-completed")),
-#             'cancel_url': 'http://{}{}'.format(host, reverse("core:payment-failed")),
-#         }
+        # host = request.get_host()
+        # paypal_dict = {
+        #     'business': settings.PAYPAL_RECEIVER_EMAIL,
+        #     'amount': cart_total_amount,
+        #     'item_name': "Order-Item-No-" + str(order.id),
+        #     'invoice': "INVOICE_NO-" + str(order.id),
+        #     'currency_code': "USD",
+        #     'notify_url': 'http://{}{}'.format(host, reverse("core:paypal-ipn")),
+        #     'return_url': 'http://{}{}'.format(host, reverse("core:payment-completed")),
+        #     'cancel_url': 'http://{}{}'.format(host, reverse("core:payment-failed")),
+        # }
 
-#         paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
+        # paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
 
-#         # cart_total_amount = 0
-#         # if 'cart_data_obj' in request.session:
-#         #     for p_id, item in request.session['cart_data_obj'].items():
-#         #         cart_total_amount += int(item['qty']) * float(item['price'])
+        # # cart_total_amount = 0
+        # # if 'cart_data_obj' in request.session:
+        # #     for p_id, item in request.session['cart_data_obj'].items():
+        # #         cart_total_amount += int(item['qty']) * float(item['price'])
 
-#         try:
-#             active_address = Address.objects.get(user=request.user, status=True)
-#         except:
-#             messages.warning(request, "There are multiple addresses, only one should be activated.")
-#             active_address = None
+        # try:
+        #     active_address = Address.objects.get(user=request.user, status=True)
+        # except:
+        #     messages.warning(request, "There are multiple addresses, only one should be activated.")
+        #     active_address = None
 
-#         return render(request, "core/checkout.html", {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button, "active_address":active_address})
+        return render(request, "core/checkout.html", {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button, "active_address":active_address})
 
 
 # @login_required
