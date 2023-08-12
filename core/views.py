@@ -246,13 +246,13 @@ def cart_view(request):
         return redirect("core:index")
 
 
-# def delete_item_from_cart(request):
-#     product_id = str(request.GET['id'])
-#     if 'cart_data_obj' in request.session:
-#         if product_id in request.session['cart_data_obj']:
-#             cart_data = request.session['cart_data_obj']
-#             del request.session['cart_data_obj'][product_id]
-#             request.session['cart_data_obj'] = cart_data
+def delete_item_from_cart(request):
+    product_id = str(request.GET['id'])
+    if 'cart_data_obj' in request.session:
+        if product_id in request.session['cart_data_obj']:
+            cart_data = request.session['cart_data_obj']
+            del request.session['cart_data_obj'][product_id]
+            request.session['cart_data_obj'] = cart_data
     
 #     cart_total_amount = 0
 #     if 'cart_data_obj' in request.session:
