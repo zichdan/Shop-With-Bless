@@ -45,8 +45,8 @@ urlpatterns = [
     # Search
     path("search/", search_view, name="search"),
 
-#     # Filter product URL
-#     path("filter-products/", filter_product, name="filter-product"),
+    # Filter product URL
+    path("filter-products/", filter_product, name="filter-product"),
 
 #     # Add to cart URL
 #     path("add-to-cart/", add_to_cart, name="add-to-cart"),

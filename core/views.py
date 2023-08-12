@@ -181,29 +181,29 @@ def search_view(request):
     return render(request, "core/search.html", context)
 
 
-# def filter_product(request):
-#     categories = request.GET.getlist("category[]")
-#     vendors = request.GET.getlist("vendor[]")
+def filter_product(request):
+    categories = request.GET.getlist("category[]")
+    vendors = request.GET.getlist("vendor[]")
 
 
-#     min_price = request.GET['min_price']
-#     max_price = request.GET['max_price']
+    min_price = request.GET['min_price']
+    max_price = request.GET['max_price']
 
-#     products = Product.objects.filter(product_status="published").order_by("-id").distinct()
+    products = Product.objects.filter(product_status="published").order_by("-id").distinct()
 
-#     products = products.filter(price__gte=min_price)
-#     products = products.filter(price__lte=max_price)
+    products = products.filter(price__gte=min_price)
+    products = products.filter(price__lte=max_price)
 
 
-#     if len(categories) > 0:
-#         products = products.filter(category__id__in=categories).distinct() 
+    if len(categories) > 0:
+        products = products.filter(category__id__in=categories).distinct() 
 
-#     if len(vendors) > 0:
-#         products = products.filter(vendor__id__in=vendors).distinct() 
+    if len(vendors) > 0:
+        products = products.filter(vendor__id__in=vendors).distinct() 
     
     
-#     data = render_to_string("core/async/product-list.html", {"products": products})
-#     return JsonResponse({"data": data})
+    data = render_to_string("core/async/product-list.html", {"products": products})
+    return JsonResponse({"data": data})
 
 
 # def add_to_cart(request):
