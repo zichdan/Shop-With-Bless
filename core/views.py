@@ -4,14 +4,14 @@ from django.shortcuts import redirect, render, get_object_or_404
 from taggit.models import Tag
 from core.models import Product, Category, Vendor, CartOrder, CartOrderProducts, ProductImages, ProductReview, wishlist_model, Address
 # from userauths.models import ContactUs, Profile
-# from core.forms import ProductReviewForm
+from core.forms import ProductReviewForm
 from django.template.loader import render_to_string
 from django.contrib import messages
 
 from django.urls import reverse
 from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
-# from paypal.standard.forms import PayPalPaymentsForm
+from paypal.standard.forms import PayPalPaymentsForm
 from django.contrib.auth.decorators import login_required
 
 import calendar
@@ -84,41 +84,41 @@ def vendor_detail_view(request, vid):
 
 def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
-    # # product = get_object_or_404(Product, pid=pid)
+    product = get_object_or_404(Product, pid=pid)
     products = Product.objects.filter(category=product.category).exclude(pid=pid)
 
-    # # Getting all reviews related to a product
-    # reviews = ProductReview.objects.filter(product=product).order_by("-date")
+    # Getting all reviews related to a product
+    reviews = ProductReview.objects.filter(product=product).order_by("-date")
 
-    # # Getting average review
-    # average_rating = ProductReview.objects.filter(product=product).aggregate(rating=Avg('rating'))
+    # Getting average review
+    average_rating = ProductReview.objects.filter(product=product).aggregate(rating=Avg('rating'))
 
-    # # Product Review form
-    # review_form = ProductReviewForm()
+    # Product Review form
+    review_form = ProductReviewForm()
 
 
-    # make_review = True 
+    make_review = True 
 
-    # if request.user.is_authenticated:
-    #     address = Address.objects.get(status=True, user=request.user)
-    #     user_review_count = ProductReview.objects.filter(user=request.user, product=product).count()
+    if request.user.is_authenticated:
+        address = Address.objects.get(status=True, user=request.user)
+        user_review_count = ProductReview.objects.filter(user=request.user, product=product).count()
 
-    #     if user_review_count > 0:
-    #         make_review = False
+        if user_review_count > 0:
+            make_review = False
     
-    # address = "Login To Continue"
+    address = "Login To Continue"
 
 
     p_image = product.p_images.all()
 
     context = {
-        # "p": product,
-        # "address": address,
-        # "make_review": make_review,
-        # "review_form": review_form,
+        "p": product,
+        "address": address,
+        "make_review": make_review,
+        "review_form": review_form,
         "p_image": p_image,
-        # "average_rating": average_rating,
-        # "reviews": reviews,
+        "average_rating": average_rating,
+        "reviews": reviews,
         "products": products,
     }
 
@@ -301,37 +301,37 @@ def checkout_view(request):
         )
 
         # Getting total amount for The Cart
-        # for p_id, item in request.session['cart_data_obj'].items():
-        #     cart_total_amount += int(item['qty']) * float(item['price'])
+        for p_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
 
-        #     cart_order_products = CartOrderProducts.objects.create(
-        #         order=order,
-        #         invoice_no="INVOICE_NO-" + str(order.id), # INVOICE_NO-5,
-        #         item=item['title'],
-        #         image=item['image'],
-        #         qty=item['qty'],
-        #         price=item['price'],
-        #         total=float(item['qty']) * float(item['price'])
-        #     )
+            cart_order_products = CartOrderProducts.objects.create(
+                order=order,
+                invoice_no="INVOICE_NO-" + str(order.id), # INVOICE_NO-5,
+                item=item['title'],
+                image=item['image'],
+                qty=item['qty'],
+                price=item['price'],
+                total=float(item['qty']) * float(item['price'])
+            )
 
-        # host = request.get_host()
-        # paypal_dict = {
-        #     'business': settings.PAYPAL_RECEIVER_EMAIL,
-        #     'amount': cart_total_amount,
-        #     'item_name': "Order-Item-No-" + str(order.id),
-        #     'invoice': "INVOICE_NO-" + str(order.id),
-        #     'currency_code': "USD",
-        #     'notify_url': 'http://{}{}'.format(host, reverse("core:paypal-ipn")),
-        #     'return_url': 'http://{}{}'.format(host, reverse("core:payment-completed")),
-        #     'cancel_url': 'http://{}{}'.format(host, reverse("core:payment-failed")),
-        # }
+        host = request.get_host()
+        paypal_dict = {
+            'business': settings.PAYPAL_RECEIVER_EMAIL,
+            'amount': cart_total_amount,
+            'item_name': "Order-Item-No-" + str(order.id),
+            'invoice': "INVOICE_NO-" + str(order.id),
+            'currency_code': "USD",
+            'notify_url': 'http://{}{}'.format(host, reverse("core:paypal-ipn")),
+            'return_url': 'http://{}{}'.format(host, reverse("core:payment-completed")),
+            'cancel_url': 'http://{}{}'.format(host, reverse("core:payment-failed")),
+        }
 
-        # paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
+        paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
 
-        # # cart_total_amount = 0
-        # # if 'cart_data_obj' in request.session:
-        # #     for p_id, item in request.session['cart_data_obj'].items():
-        # #         cart_total_amount += int(item['qty']) * float(item['price'])
+        cart_total_amount = 0
+        if 'cart_data_obj' in request.session:
+            for p_id, item in request.session['cart_data_obj'].items():
+                cart_total_amount += int(item['qty']) * float(item['price'])
 
         # try:
         #     active_address = Address.objects.get(user=request.user, status=True)
@@ -342,17 +342,17 @@ def checkout_view(request):
         return render(request, "core/checkout.html", {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button, "active_address":active_address})
 
 
-# @login_required
-# def payment_completed_view(request):
-#     cart_total_amount = 0
-#     if 'cart_data_obj' in request.session:
-#         for p_id, item in request.session['cart_data_obj'].items():
-#             cart_total_amount += int(item['qty']) * float(item['price'])
-#     return render(request, 'core/payment-completed.html',  {'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount})
+@login_required
+def payment_completed_view(request):
+    cart_total_amount = 0
+    if 'cart_data_obj' in request.session:
+        for p_id, item in request.session['cart_data_obj'].items():
+            cart_total_amount += int(item['qty']) * float(item['price'])
+    return render(request, 'core/payment-completed.html',  {'cart_data':request.session['cart_data_obj'],'totalcartitems':len(request.session['cart_data_obj']),'cart_total_amount':cart_total_amount})
 
-# @login_required
-# def payment_failed_view(request):
-#     return render(request, 'core/payment-failed.html')
+@login_required
+def payment_failed_view(request):
+    return render(request, 'core/payment-failed.html')
 
 
 # @login_required

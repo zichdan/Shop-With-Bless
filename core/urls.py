@@ -63,14 +63,14 @@ urlpatterns = [
       # Checkout  URL
     path("checkout/", checkout_view, name="checkout"),
 
-#     # Paypal URL
-#     path('paypal/', include('paypal.standard.ipn.urls')),
+    # Paypal URL
+    path('paypal/', include('paypal.standard.ipn.urls')),
 
-#     # Payment Successful
-#     path("payment-completed/", payment_completed_view, name="payment-completed"),
+    # Payment Successful
+    path("payment-completed/", payment_completed_view, name="payment-completed"),
 
-#     # Payment Failed
-#     path("payment-failed/", payment_failed_view, name="payment-failed"),
+    # Payment Failed
+    path("payment-failed/", payment_failed_view, name="payment-failed"),
 
 #     # Dahboard URL
 #     path("dashboard/", customer_dashboard, name="dashboard"),
