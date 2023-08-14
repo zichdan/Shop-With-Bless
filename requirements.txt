@@ -7,3 +7,9 @@ django-jazzmin
 django-shortuuidfield
 django-taggit
 django-ckeditor
+django-paypal
+
+
+
+
+
