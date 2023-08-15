@@ -78,8 +78,8 @@ urlpatterns = [
     # Order Detail URL
     path("dashboard/order/<int:id>", order_detail, name="order-detail"),
 
-#     # Making address defauly
-#     path("make-default-address/", make_address_default, name="make-default-address"),
+    # Making address default
+    path("make-default-address/", make_address_default, name="make-default-address"),
 
 #     # wishlist page
 #     path("wishlist/", wishlist_view, name="wishlist"),

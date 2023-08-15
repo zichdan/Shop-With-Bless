@@ -333,11 +333,11 @@ def checkout_view(request):
             for p_id, item in request.session['cart_data_obj'].items():
                 cart_total_amount += int(item['qty']) * float(item['price'])
 
-        # try:
-        #     active_address = Address.objects.get(user=request.user, status=True)
-        # except:
-        #     messages.warning(request, "There are multiple addresses, only one should be activated.")
-        #     active_address = None
+        try:
+            active_address = Address.objects.get(user=request.user, status=True)
+        except:
+            messages.warning(request, "There are multiple addresses, only one should be activated.")
+            active_address = None
 
         return render(request, "core/checkout.html", {"cart_data":request.session['cart_data_obj'], 'totalcartitems': len(request.session['cart_data_obj']), 'cart_total_amount':cart_total_amount, 'paypal_payment_button':paypal_payment_button, "active_address":active_address})
 
@@ -358,7 +358,7 @@ def payment_failed_view(request):
 @login_required
 def customer_dashboard(request):
     orders_list = CartOrder.objects.filter(user=request.user).order_by("-id")
-    # address = Address.objects.filter(user=request.user)
+    address = Address.objects.filter(user=request.user)
 
 
     # orders = CartOrder.objects.annotate(month=ExtractMonth("order_date")).values("month").annotate(count=Count("id")).values("month", "count")
@@ -369,19 +369,19 @@ def customer_dashboard(request):
     #     month.append(calendar.month_name[i["month"]])
     #     total_orders.append(i["count"])
 
-    # if request.method == "POST":
-    #     address = request.POST.get("address")
-    #     mobile = request.POST.get("mobile")
+    if request.method == "POST":
+        address = request.POST.get("address")
+        mobile = request.POST.get("mobile")
 
-    #     new_address = Address.objects.create(
-    #         user=request.user,
-    #         address=address,
-    #         mobile=mobile,
-    #     )
-    #     messages.success(request, "Address Added Successfully.")
-    #     return redirect("core:dashboard")
-    # else:
-    #     print("Error")
+        new_address = Address.objects.create(
+            user=request.user,
+            address=address,
+            mobile=mobile,
+        )
+        messages.success(request, "Address Added Successfully.")
+        return redirect("core:dashboard")
+    else:
+        print("Error")
     
     # user_profile = Profile.objects.get(user=request.user)
     # print("user profile is: #########################",  user_profile)
@@ -390,7 +390,7 @@ def customer_dashboard(request):
         # "user_profile": user_profile,
         # "orders": orders,
         "orders_list": orders_list,
-        # "address": address,
+        "address": address,
         "month": month,
         "total_orders": total_orders,
     }
@@ -407,11 +407,11 @@ def order_detail(request, id):
     return render(request, 'core/order-detail.html', context)
 
 
-# def make_address_default(request):
-#     id = request.GET['id']
-#     Address.objects.update(status=False)
-#     Address.objects.filter(id=id).update(status=True)
-#     return JsonResponse({"boolean": True})
+def make_address_default(request):
+    id = request.GET['id']
+    Address.objects.update(status=False)
+    Address.objects.filter(id=id).update(status=True)
+    return JsonResponse({"boolean": True})
 
 # @login_required
 # def wishlist_view(request):
