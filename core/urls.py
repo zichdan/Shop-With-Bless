@@ -72,11 +72,11 @@ urlpatterns = [
     # Payment Failed
     path("payment-failed/", payment_failed_view, name="payment-failed"),
 
-#     # Dahboard URL
-#     path("dashboard/", customer_dashboard, name="dashboard"),
+    # Dahboard URL
+    path("dashboard/", customer_dashboard, name="dashboard"),
 
-#     # Order Detail URL
-#     path("dashboard/order/<int:id>", order_detail, name="order-detail"),
+    # Order Detail URL
+    path("dashboard/order/<int:id>", order_detail, name="order-detail"),
 
 #     # Making address defauly
 #     path("make-default-address/", make_address_default, name="make-default-address"),
