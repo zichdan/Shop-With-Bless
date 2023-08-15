@@ -464,19 +464,19 @@ def add_to_wishlist(request):
 # #     t = render_to_string("core/async/wishlist-list.html", context)
 # #     return JsonResponse({"data": t, "w":wishlist})
 
-# def remove_wishlist(request):
-#     pid = request.GET['id']
-#     wishlist = wishlist_model.objects.filter(user=request.user)
-#     wishlist_d = wishlist_model.objects.get(id=pid)
-#     delete_product = wishlist_d.delete()
+def remove_wishlist(request):
+    pid = request.GET['id']
+    wishlist = wishlist_model.objects.filter(user=request.user)
+    wishlist_d = wishlist_model.objects.get(id=pid)
+    delete_product = wishlist_d.delete()
     
-#     context = {
-#         "bool":True,
-#         "w":wishlist
-#     }
-#     wishlist_json = serializers.serialize('json', wishlist)
-#     t = render_to_string('core/async/wishlist-list.html', context)
-#     return JsonResponse({'data':t,'w':wishlist_json})
+    context = {
+        "bool":True,
+        "w":wishlist
+    }
+    wishlist_json = serializers.serialize('json', wishlist)
+    t = render_to_string('core/async/wishlist-list.html', context)
+    return JsonResponse({'data':t,'w':wishlist_json})
 
 
 
