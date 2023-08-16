@@ -3,7 +3,7 @@ from django.http import JsonResponse
 from django.shortcuts import redirect, render, get_object_or_404
 from taggit.models import Tag
 from core.models import Product, Category, Vendor, CartOrder, CartOrderProducts, ProductImages, ProductReview, wishlist_model, Address
-# from userauths.models import ContactUs, Profile
+from userauths.models import ContactUs, Profile
 from core.forms import ProductReviewForm
 from django.template.loader import render_to_string
 from django.contrib import messages
@@ -487,27 +487,27 @@ def contact(request):
     return render(request, "core/contact.html")
 
 
-# def ajax_contact_form(request):
-#     full_name = request.GET['full_name']
-#     email = request.GET['email']
-#     phone = request.GET['phone']
-#     subject = request.GET['subject']
-#     message = request.GET['message']
+def ajax_contact_form(request):
+    full_name = request.GET['full_name']
+    email = request.GET['email']
+    phone = request.GET['phone']
+    subject = request.GET['subject']
+    message = request.GET['message']
 
-#     contact = ContactUs.objects.create(
-#         full_name=full_name,
-#         email=email,
-#         phone=phone,
-#         subject=subject,
-#         message=message,
-#     )
+    contact = ContactUs.objects.create(
+        full_name=full_name,
+        email=email,
+        phone=phone,
+        subject=subject,
+        message=message,
+    )
 
-#     data = {
-#         "bool": True,
-#         "message": "Message Sent Successfully"
-#     }
+    data = {
+        "bool": True,
+        "message": "Message Sent Successfully"
+    }
 
-#     return JsonResponse({"data":data})
+    return JsonResponse({"data":data})
 
 
 # def about_us(request):
