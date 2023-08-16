@@ -482,9 +482,9 @@ def remove_wishlist(request):
 
 
 
-# # Other Pages 
-# def contact(request):
-#     return render(request, "core/contact.html")
+# Other Pages 
+def contact(request):
+    return render(request, "core/contact.html")
 
 
 # def ajax_contact_form(request):

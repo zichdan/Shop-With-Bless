@@ -92,7 +92,7 @@ urlpatterns = [
     path("remove-from-wishlist/", remove_wishlist, name="remove-from-wishlist"),
 
 
-#     path("contact/", contact, name="contact"),
+    path("contact/", contact, name="contact"),
 #     path("ajax-contact-form/", ajax_contact_form, name="ajax-contact-form"),
 
 #     path("about_us/", about_us, name="about_us"),
