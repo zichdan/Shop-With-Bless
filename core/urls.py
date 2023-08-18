@@ -64,7 +64,7 @@ urlpatterns = [
     path("checkout/", checkout_view, name="checkout"),
 
     # Paypal URL
-    path('paypal/', include('paypal.standard.ipn.urls')),
+    # path('paypal/', include('paypal.standard.ipn.urls')),
 
     # Payment Successful
     path("payment-completed/", payment_completed_view, name="payment-completed"),
@@ -95,8 +95,8 @@ urlpatterns = [
     path("contact/", contact, name="contact"),
     path("ajax-contact-form/", ajax_contact_form, name="ajax-contact-form"),
 
-#     path("about_us/", about_us, name="about_us"),
-#     path("purchase_guide/", purchase_guide, name="purchase_guide"),
-#     path("privacy_policy/", privacy_policy, name="privacy_policy"),
-#     path("terms_of_service/", terms_of_service, name="terms_of_service"),
+    path("about_us/", about_us, name="about_us"),
+    path("purchase_guide/", purchase_guide, name="purchase_guide"),
+    path("privacy_policy/", privacy_policy, name="privacy_policy"),
+    path("terms_of_service/", terms_of_service, name="terms_of_service"),
 ]

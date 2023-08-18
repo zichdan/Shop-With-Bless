@@ -131,11 +131,11 @@
                 <div class="row align-items-center">
                     <div class="col-xl-3 col-lg-4">
                         <div class="header-info">
-                            {% comment %} <ul>
+                            <ul>
                                 <li><a href="{% url 'core:about_us' %}">About Us</a></li>
                                 <li><a href="{% url 'core:dashboard' %}">My Account</a></li>
                                 <li><a href="{% url 'core:wishlist' %}">Wishlist</a></li>
-                                <li><a href="{% url 'core:dashboard' %}">Order Tracking</a></li> {% endcomment %}
+                                <li><a href="{% url 'core:dashboard' %}">Order Tracking</a></li>
                             </ul>
                         </div>
                     </div>
@@ -244,8 +244,6 @@
                                     </a>
                                     <a href="shop-compare.html"><span class="lable ml-0">Compare</span></a>
                                 </div> -->
-
-{% comment %}                                 
                                 <div class="header-action-icon-2">
                                     <a href="{% url 'core:wishlist' %}">
                                         <img class="svgInject" alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
@@ -256,12 +254,9 @@
                                         {% endif %}
                                     </a>
                                     <a href="{% url 'core:wishlist' %}"><span class="lable">Wishlist</span></a>
-                                </div> {% endcomment %}
-
-
-
+                                </div>
                                 <div class="header-action-icon-2">
-                                    {% comment %} <a class="mini-cart-icon" href="{% url 'core:cart' %}">
+                                    <a class="mini-cart-icon" href="{% url 'core:cart' %}">
                                         <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-cart.svg' %}" />
                                         <span class="pro-count blue cart-items-count">{{ request.session.cart_data_obj|length }}</span>
                                     </a>
@@ -289,7 +284,7 @@
                                             <li><a href="page-account.html"><i class="fi fi-rs-location-alt mr-10"></i>Order Tracking</a></li>
                                             <!-- <li><a href="page-account.html"><i class="fi fi-rs-label mr-10"></i>My Voucher</a></li> -->
                                             <li><a href="{% url 'core:wishlist' %}"><i class="fi fi-rs-heart mr-10"></i>My Wishlist</a></li>
-                                            <li><a href="{% url 'core:dashboard' %}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li> {% endcomment %}
+                                            <li><a href="{% url 'core:dashboard' %}"><i class="fi fi-rs-settings-sliders mr-10"></i>Setting</a></li>
                                             {% if request.user.is_authenticated %}
                                             <li><a href="{% url 'userauths:sign-out' %}"><i class="fi fi-rs-sign-out mr-10"></i>Sign out</a></li>
                                             {% else %}
@@ -430,9 +425,9 @@
                                         <a>Blog</a>
 
                                     </li>
-                                    {% comment %} <li>
-                                        <a href="#">Pages <i class="fi-rs-angle-down"></i></a> {% endcomment %}
-                                        {% comment %} <ul class="sub-menu">
+                                    <li>
+                                        <a href="#">Pages <i class="fi-rs-angle-down"></i></a>
+                                        <ul class="sub-menu">
                                             <li><a href="{% url 'core:about_us' %}">About Us</a></li>
                                             <li><a href="{% url 'core:contact' %}">Contact</a></li>
                                             <li><a href="{% url 'core:dashboard' %}">My Dashboard</a></li>
@@ -443,7 +438,7 @@
                                     </li>
                                     <li>
                                         <a href="{% url 'core:contact' %}">Contact</a>
-                                    </li> {% endcomment %}
+                                    </li>
                                 </ul>
                             </nav>
                         </div>
@@ -462,7 +457,7 @@
                     <div class="header-action-right d-block d-lg-none">
                         <div class="header-action-2">
                             <div class="header-action-icon-2">
-                                {% comment %} <a href="{% url 'core:wishlist' %}"> {% endcomment %}
+                                <a href="{% url 'core:wishlist' %}">
                                     <img alt="Nest" src="{% static 'assets/imgs/theme/icons/icon-heart.svg' %}" />
                                     {% if request.user.is_authenticated %}
                                     <span class="pro-count blue">{{ wishlist.count }}</span>
@@ -481,7 +476,7 @@
                                     <div class="shopping-cart-footer">
                                         <div class="shopping-cart-button">
                                             <a href="{% url 'core:cart' %}">View cart</a>
-                                            {% comment %} <a href="{% url 'core:checkout' %}">Checkout</a> {% endcomment %}
+                                            <a href="{% url 'core:checkout' %}">Checkout</a>
                                         </div>
                                     </div>
                                 </div>
@@ -878,7 +873,7 @@
                     <div class="footer-bottom"></div>
                 </div>
                 <div class="col-xl-4 col-lg-6 col-md-6">
-                    <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Bless Mall</strong> - HTML Ecommerce Template <br />All rights reserved</p>
+                    <p class="font-sm mb-0">&copy; 2022, <strong class="text-brand">Nest</strong> - HTML Ecommerce Template <br />All rights reserved</p>
                 </div>
                 <div class="col-xl-4 col-lg-6 text-center d-none d-xl-block">
                     <div class="hotline d-lg-inline-flex mr-30">
