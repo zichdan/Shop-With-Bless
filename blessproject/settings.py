@@ -32,7 +32,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    # For customizing and Beautifying the Admin Panel 
     'jazzmin',
+    
+    # Default Django INSTALLED_APPS
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,16 +43,22 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     
-    #Third Party Apps
+    # For dispalaying Human readable text with template_tags
+    'django.contrib.humanize',
+
+
+    # Third Party
     'taggit',
     'ckeditor',
-    # 'bootstrap4',
+    'bootstrap4',
     
-        
-    #Custom Apps
+
+    # PayPal Integration
+    'paypal.standard.ipn',
+
+    # Custom Apps
     'core',
     'userauths',
-    
 ]
 
 MIDDLEWARE = [
@@ -67,7 +76,7 @@ ROOT_URLCONF = 'blessproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
