@@ -68,22 +68,22 @@ def logout_view(request):
     return redirect("userauths:sign-in")
 
 
-# def profile_update(request):
-#     profile = Profile.objects.get(user=request.user)
-#     if request.method == "POST":
-#         form = ProfileForm(request.POST, request.FILES, instance=profile)
-#         if form.is_valid():
-#             new_form = form.save(commit=False)
-#             new_form.user = request.user
-#             new_form.save()
-#             messages.success(request, "Profile Updated Successfully.")
-#             return redirect("core:dashboard")
-#     else:
-#         form = ProfileForm(instance=profile)
+def profile_update(request):
+    profile = Profile.objects.get(user=request.user)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=profile)
+        if form.is_valid():
+            new_form = form.save(commit=False)
+            new_form.user = request.user
+            new_form.save()
+            messages.success(request, "Profile Updated Successfully.")
+            return redirect("core:dashboard")
+    else:
+        form = ProfileForm(instance=profile)
 
-#     context = {
-#         "form": form,
-#         "profile": profile,
-#     }
+    context = {
+        "form": form,
+        "profile": profile,
+    }
 
-#     return render(request, "userauths/profile-edit.html", context)
+    return render(request, "userauths/profile-edit.html", context)
