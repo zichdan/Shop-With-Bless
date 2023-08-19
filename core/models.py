@@ -61,8 +61,8 @@ class Vendor(models.Model):
     title = models.CharField(max_length=100, default="Nestify")
     image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
     cover_image = models.ImageField(upload_to=user_directory_path, default="vendor.jpg")
-    description = RichTextUploadingField(null=True, blank=True, default="I am am Amazing Vendor")
     # description = models.TextField(null=True, blank=True, default="I am am Amazing Vendor")
+    description = RichTextUploadingField(null=True, blank=True, default="I am am Amazing Vendor")
 
     address = models.CharField(max_length=100, default="123 Main Street.")
     contact = models.CharField(max_length=100, default="+123 (456) 789")
@@ -92,37 +92,37 @@ class Product(models.Model):
     category = models.ForeignKey(Category, on_delete=models.SET_NULL, null=True, related_name="category")
     vendor = models.ForeignKey(Vendor, on_delete=models.SET_NULL, null=True, related_name="product")
 
-    title = models.CharField(max_length=100, default="Senator")
+    title = models.CharField(max_length=100, default="Fresh Pear")
     image = models.ImageField(upload_to=user_directory_path, default="product.jpg")
-    description = RichTextUploadingField(null=True, blank=True, default="This is the product")
     # description = models.TextField(null=True, blank=True, default="This is the product")
+    description = RichTextUploadingField(null=True, blank=True, default="This is the product")
 
     price = models.DecimalField(max_digits=99999999999999, decimal_places=2, default="1.99")
     old_price = models.DecimalField(max_digits=99999999999999, decimal_places=2, default="2.99")
 
     specifications = RichTextUploadingField(null=True, blank=True)
     # specifications = models.TextField(null=True, blank=True)
-   
-    product_status = models.CharField(choices=STATUS, max_length=10, default="in_review")
-   
-   
-    status = models.BooleanField(default=True)
-    in_stock = models.BooleanField(default=True)
-    featured = models.BooleanField(default=False)
-    digital = models.BooleanField(default=False)
-
     type = models.CharField(max_length=100, default="Organic", null=True, blank=True)
     stock_count = models.CharField(max_length=100, default="10", null=True, blank=True)
     life = models.CharField(max_length=100, default="100 Days", null=True, blank=True)
     mfd = models.DateTimeField(auto_now_add=False, null=True, blank=True)
 
     tags = TaggableManager(blank=True)
+
     # tags = models.ForeignKey(Tags, on_delete=models.SET_NULL, null=True)
+
+    product_status = models.CharField(choices=STATUS, max_length=10, default="in_review")
+
+    status = models.BooleanField(default=True)
+    in_stock = models.BooleanField(default=True)
+    featured = models.BooleanField(default=False)
+    digital = models.BooleanField(default=False)
 
     sku = ShortUUIDField(unique=True, length=4, max_length=10, prefix="sku", alphabet="1234567890")
 
     date = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(null=True, blank=True)
+
 
 
     class Meta:
@@ -166,7 +166,7 @@ class CartOrder(models.Model):
     paid_status = models.BooleanField(default=False, null=True, blank=True)
     order_date = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     product_status = models.CharField(choices=STATUS_CHOICE, max_length=30, default="processing")
-    # sku = ShortUUIDField(null=True, blank=True, length=5, prefix="SKU", max_length=20, alphabet="abcdefgh12345")
+    sku = ShortUUIDField(null=True, blank=True, length=5, prefix="SKU", max_length=20, alphabet="abcdefgh12345")
 
     class Meta:
         verbose_name_plural = "Cart Order"
