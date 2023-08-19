@@ -84,7 +84,7 @@ def vendor_detail_view(request, vid):
 
 def product_detail_view(request, pid):
     product = Product.objects.get(pid=pid)
-    product = get_object_or_404(Product, pid=pid)
+    # product = get_object_or_404(Product, pid=pid)
     products = Product.objects.filter(category=product.category).exclude(pid=pid)
 
     # Getting all reviews related to a product
@@ -282,7 +282,7 @@ def update_cart(request):
     return JsonResponse({"data": context, 'totalcartitems': len(request.session['cart_data_obj'])})
 
 
-# @login_required
+@login_required
 def checkout_view(request):
     cart_total_amount = 0
     total_amount = 0
@@ -328,10 +328,10 @@ def checkout_view(request):
 
         paypal_payment_button = PayPalPaymentsForm(initial=paypal_dict)
 
-        cart_total_amount = 0
-        if 'cart_data_obj' in request.session:
-            for p_id, item in request.session['cart_data_obj'].items():
-                cart_total_amount += int(item['qty']) * float(item['price'])
+        # cart_total_amount = 0
+        # if 'cart_data_obj' in request.session:
+        #     for p_id, item in request.session['cart_data_obj'].items():
+        #         cart_total_amount += int(item['qty']) * float(item['price'])
 
         try:
             active_address = Address.objects.get(user=request.user, status=True)
@@ -361,13 +361,13 @@ def customer_dashboard(request):
     address = Address.objects.filter(user=request.user)
 
 
-    # orders = CartOrder.objects.annotate(month=ExtractMonth("order_date")).values("month").annotate(count=Count("id")).values("month", "count")
+    orders = CartOrder.objects.annotate(month=ExtractMonth("order_date")).values("month").annotate(count=Count("id")).values("month", "count")
     month = []
     total_orders = []
 
-    # for i in orders:
-    #     month.append(calendar.month_name[i["month"]])
-    #     total_orders.append(i["count"])
+    for i in orders:
+        month.append(calendar.month_name[i["month"]])
+        total_orders.append(i["count"])
 
     if request.method == "POST":
         address = request.POST.get("address")
@@ -383,12 +383,12 @@ def customer_dashboard(request):
     else:
         print("Error")
     
-    # user_profile = Profile.objects.get(user=request.user)
-    # print("user profile is: #########################",  user_profile)
+    user_profile = Profile.objects.get(user=request.user)
+    print("user profile is: #########################",  user_profile)
 
     context = {
-        # "user_profile": user_profile,
-        # "orders": orders,
+        "user_profile": user_profile,
+        "orders": orders,
         "orders_list": orders_list,
         "address": address,
         "month": month,
@@ -450,19 +450,19 @@ def add_to_wishlist(request):
     return JsonResponse(context)
 
 
-# # def remove_wishlist(request):
-# #     pid = request.GET['id']
-# #     wishlist = wishlist_model.objects.filter(user=request.user).values()
+# def remove_wishlist(request):
+#     pid = request.GET['id']
+#     wishlist = wishlist_model.objects.filter(user=request.user).values()
 
-# #     product = wishlist_model.objects.get(id=pid)
-# #     h = product.delete()
+#     product = wishlist_model.objects.get(id=pid)
+#     h = product.delete()
 
-# #     context = {
-# #         "bool": True,
-# #         "wishlist":wishlist
-# #     }
-# #     t = render_to_string("core/async/wishlist-list.html", context)
-# #     return JsonResponse({"data": t, "w":wishlist})
+#     context = {
+#         "bool": True,
+#         "wishlist":wishlist
+#     }
+#     t = render_to_string("core/async/wishlist-list.html", context)
+#     return JsonResponse({"data": t, "w":wishlist})
 
 def remove_wishlist(request):
     pid = request.GET['id']
