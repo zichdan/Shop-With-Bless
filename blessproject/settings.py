@@ -147,11 +147,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL = 'userauths.User'
-
-
-
-
 
 JAZZMIN_SETTINGS = {
     "site_header": "SHOP WITH BLESS",
@@ -160,6 +155,15 @@ JAZZMIN_SETTINGS = {
     'copyright': 'zichdan.com',
     
 }
+
+
+
+
+LOGIN_URL = "userauths:sign-in"
+LOGIN_REDIRECT_URL = "core:index"
+LOGOUT_REDIRECT_URL = "userauths:sign-in"
+
+AUTH_USER_MODEL = 'userauths.User'
 
 
 
