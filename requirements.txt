@@ -9,6 +9,10 @@ django-paypal
 django-bootstrap4
 
 
+gunicorn
+
+whitenoise
+
 
 
 
