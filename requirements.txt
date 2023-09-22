@@ -13,7 +13,7 @@ gunicorn
 
 whitenoise
 
-django-dotenv
+python-dotenv
 
 
 
