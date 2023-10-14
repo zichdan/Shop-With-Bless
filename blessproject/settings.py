@@ -172,7 +172,6 @@ JAZZMIN_SETTINGS = {
     "site_brand": "Competency & Intergrity",
     'site_logo': 'assets/imgs/theme/loading.gif',
     'copyright': 'zichdan.com',
-    
 }
 
 
